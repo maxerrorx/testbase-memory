@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web3 Journey | Maxerrorx</title>
+    <style>
+        /* Base and Animated Gradient Background */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(45deg, #0f0c29, #302b63, #040d21);
+            background-size: 400% 400%;
+            animation: glowingBackground 15s ease infinite;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        @keyframes glowingBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Glass Reflection Sweep Animation */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; 
+            left: -100%;
+            width: 50%; 
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent);
+            transform: skewX(-25deg);
+            transition: 0.6s;
+        }
+
+        /* Hover Effects */
+        .glass-card:hover::before {
+            left: 125%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 40px rgba(167, 139, 250, 0.3); /* Neon Purple Glow */
+            border-color: rgba(167, 139, 250, 0.5);
+        }
+
+        /* Typography */
+        h2 {
+            color: #a78bfa;
+            margin-top: 0;
+            font-size: 1.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        p {
+            line-height: 1.7;
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+
+        /* Particle System Container */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Background Particles injected via JS -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Intro Card -->
+        <div class="glass-card">
+            <h2>My Web3 Journey</h2>
+            <p>Last year, I started my journey deeper into Web3 by exploring different ecosystems, communities, and on-chain opportunities. Since then, I’ve spent most of my time learning, contributing, and understanding how decentralized communities grow.</p>
+        </div>
+
+        <!-- Optimum Card -->
+        <div class="glass-card">
+            <h2>Current Focus: Optimum</h2>
+            <p>Recently, I started contributing to Optimum, and the experience has been genuinely exciting. The project feels innovative, the community is highly active, and the environment makes contributing enjoyable. It’s one of the few communities where discussions actually feel alive and engaging.</p>
+        </div>
+
+        <!-- Plume Mainnet Card -->
+        <div class="glass-card">
+            <h2>Past Experience: Plume Mainnet</h2>
+            <p>Before that, I spent nearly a year participating in the Plume mainnet ecosystem. Overall, the experience was very positive — especially the consistency of the staking rewards and the community activity around the network. While I appreciated the ecosystem, the long unstaking lock-up period was one aspect I personally didn’t enjoy much.</p>
+        </div>
+    </div>
+
+    <!-- Futuristic Particle Animation Logic -->
+    <script>
+        const particlesContainer = document.getElementById('particles');
+        const particleCount = 40;
+
+        // Generate floating orbs
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            
+            // Randomize size, opacity, and position
+            const size = Math.random() * 4 + 1;
+            particle.style.position = 'absolute';
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.background = 'rgba(167, 139, 250, ' + (Math.random() * 0.5 + 0.2) + ')';
+            particle.style.borderRadius = '50%';
+            particle.style.top = Math.random() * 100 + 'vh';
+            particle.style.left = Math.random() * 100 + 'vw';
+            
+            // Randomize animation speed and delay
+            const duration = Math.random() * 15 + 10;
+            const delay = Math.random() * 5;
+            particle.style.animation = `float ${duration}s linear ${delay}s infinite`;
+            
+            particlesContainer.appendChild(particle);
+        }
+
+        // Inject keyframes for the particles dynamically
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes float {
+                0% { transform: translateY(0) translateX(0); opacity: 0; }
+                20% { opacity: 1; }
+                80% { opacity: 1; }
+                100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
